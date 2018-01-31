@@ -24,7 +24,22 @@ Route::get('services', function () {
     return view('services');
 });
 
-Route::get('/a', function () {
+Route::get('a', function () {
     return '1';
 });
-Route::get('/z','ZZcontorller@index');
+Route::get('z','ZZcontorller@index'); //路徑app/controllers
+Route::post('z','ZZcontorller@update'); //路徑app/controllers
+
+Route::get('v/{id?}', function () {  //加?為選用
+    return '2';
+})->where('id','[0-9]+'); //條件
+Route::get('b/{name}', function () {
+    return '3';
+})->where('name','[A-z]+');
+Route::get('b/{id}/{name}', function () {
+    return '4';
+})->where(['id','[0-9]+','name','[A-z]+']);
+
+Route::get('q/{id}', function () {
+    return 'qqqq';
+})->name('q.show');
